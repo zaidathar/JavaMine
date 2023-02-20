@@ -12,8 +12,13 @@ public class Basics {
 
         return res.size() > 0;
     }
+
+    public static boolean checkDuplicateUsingHashSet(List<Integer> ls){
+        Set<Integer> set = new HashSet<>();
+        return ls.stream().anyMatch( a -> !set.add(a));
+    }
     public static void main(String[] args) {
         List<Integer> intergerList = Arrays.asList(1,2,3,4,5,6,7,8,9,9);
-        System.out.println("Duplicate found in list "+checkDuplicateUsingFrequency(intergerList));
+        System.out.println("Duplicate found in list "+checkDuplicateUsingHashSet(intergerList));
     }
 }
