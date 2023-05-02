@@ -6,11 +6,18 @@ public class InvertedStarPyramid {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        for(int i = n ; i>0 ;i--){
-            for(int j = 0;j<i;j++){
-                System.out.print("*");
+        int startIndex = 0 , endIndex = 2*n-2;
+        for(int i = 0 ;i < n ;i++){
+            
+            for(int j = 0 ;j < 2*n -1 ; j++){
+                if(j >= startIndex && j<= endIndex){
+                    System.out.print("*");
+                }
+                else System.out.print(" ");
             }
             System.out.println();
+
+            startIndex++;endIndex--;
         }
         sc.close();
     }
