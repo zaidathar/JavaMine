@@ -24,4 +24,9 @@ public class EncryptionUtils {
         byte[] decValue = cipher.doFinal(decodedValue);
         return new String(decValue);
     }
+
+    /*
+    *
+    * AES encryption
+    * */
 }
