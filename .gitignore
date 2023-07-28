@@ -42,3 +42,4 @@ spring-shell.log
 src/.DS_Store
 JavaMine.iml
 ./out
+/src/com/zaidathar/problems/problems.txt

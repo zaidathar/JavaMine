@@ -1,7 +1,6 @@
 package com.zaidathar.problems.streams;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class StreamOnInteger {
@@ -29,5 +28,40 @@ public class StreamOnInteger {
 
         System.out.println("average salary "+averageSalary+" "+avgSalUsingAveraging);
 
+        // Change number to Square Root
+        List<Integer> numbers = Arrays.asList(1,2,3,4,5,6);
+        List<Double> squareRoots = numbers.stream().map(Math::sqrt).collect(Collectors.toList());
+        squareRoots.stream().forEach(System.out::println);
+
+        // Remove Duplicate from List
+        List<Integer> duplicateNumbers = Arrays.asList(1,2,3,4,5,1,2,0,6,7,8);
+        List<Integer> uniqueNumbers = duplicateNumbers.stream()
+                                        .distinct()
+                                        .collect(Collectors.toList());
+
+        System.out.println(uniqueNumbers);
+
+        // Sum of square of numbers
+        int sumOfSquare = numbers.stream().mapToInt(n -> n*n).sum();
+        System.out.println("Sum of squares of number "+sumOfSquare);
+
+        // Max and minimum in list
+        Integer min = numbers.stream().mapToInt(Integer::intValue).min().orElseThrow();
+        Integer max = numbers.stream().mapToInt(Integer::intValue).max().orElseThrow();
+        System.out.println("Min is "+min+" max is "+max);
+
+        IntSummaryStatistics stats = numbers.stream().mapToInt(Integer::intValue).summaryStatistics();
+        min = stats.getMin();
+        max = stats.getMax();
+        System.out.println("Min is "+min+" max is "+max);
+
+        // Partition list into two list containing even and odd number
+
+        Map<Boolean, List<Integer>> partition = numbers.stream().collect(Collectors.partitioningBy(n -> n%2==0));
+        List<Integer> evenList = partition.get(true);
+        List<Integer> oddList = partition.get(false);
+
+        System.out.println("List with even "+evenList);
+        System.out.println("List with odd "+oddList);
     }
 }

@@ -25,5 +25,14 @@ public class StreamOfStringClass {
         Predicate<String> checkPalindrome = a -> a.equals(new StringBuilder(a).reverse().toString());
         boolean isContainPalindrome = stringList.stream().anyMatch(checkPalindrome);
         System.out.println("List contains palindrome "+isContainPalindrome);
+
+        // Concat List of String to make single string
+        List<String> words = Arrays.asList("My","Name","Is","Java");
+        String concatedString = words.stream().collect(Collectors.joining());
+        String concatUsingReduce = words.stream().reduce("", (str1, str2) -> str1 + str2);
+        System.out.println("concatedString "+concatedString+" "+concatUsingReduce);
+
+        // find the longest string in list
+
     }
 }
