@@ -1,7 +1,9 @@
 package com.zaidathar.problems.streams;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class StreamOnInteger {
     public static void main(String[] args) {
@@ -63,5 +65,11 @@ public class StreamOnInteger {
 
         System.out.println("List with even "+evenList);
         System.out.println("List with odd "+oddList);
+
+        // Factorial of numbers
+        List<Integer> toBeFactorial = Arrays.asList(1,2,3,4,5,6,8);
+        Function<Integer, Integer> factorial = (a) -> IntStream.rangeClosed(2,a).reduce(1, (x,y) -> x*y);
+        List<Integer> factorialList = toBeFactorial.stream().map( factorial).collect(Collectors.toList());
+        System.out.println("Factorial List "+factorialList);
     }
 }
