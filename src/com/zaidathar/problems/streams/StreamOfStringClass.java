@@ -1,9 +1,13 @@
 package com.zaidathar.problems.streams;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class StreamOfStringClass {
     public static void main(String[] args) {
@@ -34,6 +38,10 @@ public class StreamOfStringClass {
         String delimiter = "-";
         String joinStrUsingDelimiter = words.stream().collect(Collectors.joining(delimiter));
         System.out.println("Joined String using delimiter "+joinStrUsingDelimiter);
+
+        // Character count of String
+        String strWithDuplicates = "aabbccddeeFFGGHHiiJJkkLLmmnnooPQQrrssttuuvvWWXXYYz";
+        Map<Character, Long> charCount = strWithDuplicates.chars().mapToObj(a-> (char) a).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
         // find the longest string in list
 
