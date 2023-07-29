@@ -31,6 +31,9 @@ public class StreamOfStringClass {
         String concatedString = words.stream().collect(Collectors.joining());
         String concatUsingReduce = words.stream().reduce("", (str1, str2) -> str1 + str2);
         System.out.println("concatedString "+concatedString+" "+concatUsingReduce);
+        String delimiter = "-";
+        String joinStrUsingDelimiter = words.stream().collect(Collectors.joining(delimiter));
+        System.out.println("Joined String using delimiter "+joinStrUsingDelimiter);
 
         // find the longest string in list
 
