@@ -26,11 +26,11 @@ public class MethodOverloading {
      */
 
     public static void main(String[] args) {
-        callMe(null);
+        //callMe(null);
 
         // Same as println case we will get ambiguity as there are multiple overloaded method
         // JVM not able to decide to which method need to be called as null fit in multiple signatures.
-        System.out.println(null);
+        //System.out.println(null);
 
 
     }
