@@ -1,13 +1,14 @@
 package com.zaidathar.helpers;
 
-public class Employee {
+public class Employee implements Comparable<Employee>{
+    private Integer id;
     private String name;
     private String department;
     private Double salary;
     private String contact;
     private String email;
 
-    Employee(){
+    public Employee(){
 
     }
 
@@ -19,6 +20,23 @@ public class Employee {
         this.email = email;
     }
 
+    public Employee(Integer id, String name, String department, Double salary, String contact, String email) {
+        this.id = id;
+        this.name = name;
+        this.department = department;
+        this.salary = salary;
+        this.contact = contact;
+        this.email = email;
+    }
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }
@@ -57,5 +75,11 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public int compareTo(Employee o) {
+        return this.id - o.id;
+
     }
 }
