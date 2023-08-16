@@ -1,4 +1,4 @@
-package com.zaidathar.custom.data_structure;
+package com.zaidathar.custom.data_structure.ArrayList;
 import java.util.Arrays;
 
 

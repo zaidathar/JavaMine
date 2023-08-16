@@ -1,4 +1,4 @@
-package com.zaidathar.custom.data_structure;
+package com.zaidathar.custom.data_structure.ArrayList;
 
 public class MyArrayListImpl {
     public static void main(String[] args) throws Exception {

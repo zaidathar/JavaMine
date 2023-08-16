@@ -1,4 +1,4 @@
-package com.zaidathar.custom.data_structure;
+package com.zaidathar.custom.data_structure.ArrayList;
 
 public interface MyList<T> {
     void insert(T t);
