@@ -52,6 +52,13 @@ public class StreamOnInteger {
         Integer max = numbers.stream().mapToInt(Integer::intValue).max().orElseThrow();
         System.out.println("Min is "+min+" max is "+max);
 
+        // Max and mininum in Array
+        int[] intArray = {1,5,6,2,3,8,9,11,99,4};
+        int minInArray = Arrays.stream(intArray).mapToObj(Integer::valueOf).min(Integer::compareTo).get();
+        int maxInArray = Arrays.stream(intArray).mapToObj(Integer::valueOf).max(Integer::compareTo).get();
+        System.out.println("In Array -> Min: "+minInArray+" Max : "+maxInArray);
+
+        // Max and min using Summary Statics
         IntSummaryStatistics stats = numbers.stream().mapToInt(Integer::intValue).summaryStatistics();
         min = stats.getMin();
         max = stats.getMax();
