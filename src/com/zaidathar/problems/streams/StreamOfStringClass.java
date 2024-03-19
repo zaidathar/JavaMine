@@ -1,9 +1,6 @@
 package com.zaidathar.problems.streams;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -18,6 +15,13 @@ public class StreamOfStringClass {
                 .filter(Character::isUpperCase)
                 .count();
         System.out.println("UpperCase count is "+upperCaseCount);
+
+        String upperCase = input.chars()
+                .mapToObj(c->(char)c)
+                .map(Character::toUpperCase)
+                .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
+                .toString();
+
 
         // Filter all string with length greater than 5
         List<String> stringList = Arrays.asList("This","is","JAVA","problem");
@@ -43,7 +47,23 @@ public class StreamOfStringClass {
         String strWithDuplicates = "aabbccddeeFFGGHHiiJJkkLLmmnnooPQQrrssttuuvvWWXXYYz";
         Map<Character, Long> charCount = strWithDuplicates.chars().mapToObj(a-> (char) a).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
-        // find the longest string in list
+        // Find the duplicate Strings in list using Set
+        List<String> arr = Arrays.asList("Java","Python", "Java", "C" , "Php", "C","C","JS");
+        Set<String> set = new HashSet<>();
+        List<String> duplicates = arr.stream()
+                .filter(s -> !set.add(s))
+                .distinct() // take distinct after first insertion set give false for same string
+                .collect(Collectors.toList());
+        System.out.println(duplicates);
+
+        // Find the duplicate Strings in list using group by
+        List<String> duplicateStr = arr.stream()
+                .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
+                .entrySet().stream()
+                .filter(e -> e.getValue() > 1)
+                .map(e -> e.getKey())
+                .collect(Collectors.toList());
+        System.out.println(duplicateStr);
 
     }
 }
