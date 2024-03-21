@@ -2,10 +2,7 @@ package com.zaidathar.problems.streams;
 
 import com.zaidathar.helpers.Employee;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class StreamOnEmployee {
@@ -32,9 +29,20 @@ public class StreamOnEmployee {
     * */
 
     public static Employee findEmployeeWithHighestSalary(List<Employee> employees){
-        return null;
+        return employees.stream()
+                .sorted(Comparator.comparingDouble(Employee::getSalary).reversed())
+                .findFirst().get();
     }
 
+    public static Map<String , Optional<Employee>> findMaxSalaryInEachDepartment(List<Employee> employees){
+        return employees.stream().collect(
+                Collectors.groupingBy(
+                    Employee::getDepartment,
+                    Collectors.maxBy(Comparator.comparingDouble(Employee::getSalary)
+                )
+            )
+        );
+    }
     public static void main(String[] args) {
         List<Employee> employees = Arrays.asList(
                 new Employee("Joe","Sales",54900d,"91991919","email@email.com"),
@@ -46,5 +54,8 @@ public class StreamOnEmployee {
         List<Employee> filteredEmployees = filterEmployeeBySalaryAndDepartment(employees,51000d,"Sales");
         filteredEmployees.stream().forEach(e -> System.out.println(e.getName()));
         findEmployeesName(employees).stream().forEach(System.out::println);
+        System.out.println("Highest salary employee : "+findEmployeeWithHighestSalary(employees));
+
+        findMaxSalaryInEachDepartment(employees).entrySet().stream().forEach(e -> System.out.println(e.getKey()+" -> "+e.getValue().get().getSalary()));
     }
 }
