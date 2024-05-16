@@ -65,5 +65,41 @@ public class StreamOfStringClass {
                 .collect(Collectors.toList());
         System.out.println(duplicateStr);
 
+        // Find first repeating character
+
+//        String s = "Java is a Awesome language";
+        String s = "abcdefghijkld";
+        Set<Character> charSet = new HashSet<>();
+        String finalStr = s.toLowerCase().replaceAll("\\s","");
+        Character firstRepeatedChar = finalStr.chars()
+                .mapToObj(c ->(char)c)
+                .filter(c -> !charSet.add(c))
+                .findFirst()
+                .orElse(null);
+        System.out.println("First repeated character is "+firstRepeatedChar);
+
+        Function<Double, Function<Double, Double>> weight = gravity -> mass -> mass * gravity;
+
+        Function<Double, Double> weightOnEarth = weight.apply(9.81);
+        System.out.println( "My weight on Earth: " + weightOnEarth.apply(60.0));
+
+        Function<Double, Double> weightOnMars = weight.apply(3.75);
+        System.out.println( "My weight on Mars: " + weightOnMars.apply(60.0));
+
+
+        // Count the occurrence of characters maintaining order
+
+        String charCountString = "acanbabcnacnionjoolky";
+        Map<Character, Long> charCountMap = charCountString.chars()
+                .mapToObj(c -> (char) c)
+                .map(Character::toUpperCase)
+                .collect(
+                        Collectors.groupingBy(
+                                Function.identity(),
+                                LinkedHashMap::new,
+                                Collectors.counting()
+                        )
+                );
+        charCountMap.entrySet().forEach(e -> System.out.println(e.getKey()+" "+e.getValue()));
     }
 }
