@@ -1,5 +1,4 @@
-package com.zaidathar.concept.multithreading.deadlock;
-
+package com.zaidathar.concept.multithreading.lock_based.synchronized_lock.deadlock;
 public class DeadLockBySuspend {
     public static void main(String[] args) throws InterruptedException {
         SharedResource sharedResource = new SharedResource();

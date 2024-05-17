@@ -1,4 +1,4 @@
-package com.zaidathar.concept.multithreading.deadlock;
+package com.zaidathar.concept.multithreading.lock_based.synchronized_lock.deadlock;
 
 public class SharedResource {
     private int value = 10;
