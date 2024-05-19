@@ -96,6 +96,28 @@ public class StreamOnInteger {
         System.out.println("Fibonacci list "+fibonacciSequence);
 
 
+        // Find the median of integer list
+
+        List<Integer> numberList = Arrays.asList(1, 3, 5, 7, 9, 11, 13,15);
+
+        double median = numberList.stream()
+                .sorted()
+                .collect(Collectors.collectingAndThen(
+                        Collectors.toList(),
+                        listOfNumber ->{
+                            int size = listOfNumber.size();
+
+                            if(size % 2 ==0 ){
+                                return (listOfNumber.get((size/2) -1) + listOfNumber.get(size/2))/2.0;
+                            }
+                            else{
+                                return (double)listOfNumber.get(size/2);
+                            }
+                        }
+                ));
+
+
+        System.out.println("Median of list : "+median);
 
         // Currying Technique
 
