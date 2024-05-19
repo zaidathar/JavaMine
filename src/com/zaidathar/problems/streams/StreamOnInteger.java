@@ -52,7 +52,7 @@ public class StreamOnInteger {
         Integer max = numbers.stream().mapToInt(Integer::intValue).max().orElseThrow();
         System.out.println("Min is "+min+" max is "+max);
 
-        // Max and mininum in Array
+        // Max and minimum in Array
         int[] intArray = {1,5,6,2,3,8,9,11,99,4};
         int minInArray = Arrays.stream(intArray).mapToObj(Integer::valueOf).min(Integer::compareTo).get();
         int maxInArray = Arrays.stream(intArray).mapToObj(Integer::valueOf).max(Integer::compareTo).get();
@@ -78,5 +78,18 @@ public class StreamOnInteger {
         Function<Integer, Integer> factorial = (a) -> IntStream.rangeClosed(2,a).reduce(1, (x,y) -> x*y);
         List<Integer> factorialList = toBeFactorial.stream().map( factorial).collect(Collectors.toList());
         System.out.println("Factorial List "+factorialList);
+
+
+        // Currying Technique
+
+        Function<Double, Function<Double, Double>> weight = gravity -> mass -> mass * gravity;
+
+        Function<Double, Double> weightOnEarth = weight.apply(9.81);
+        System.out.println( "My weight on Earth: " + weightOnEarth.apply(60.0));
+
+        Function<Double, Double> weightOnMars = weight.apply(3.75);
+        System.out.println( "My weight on Mars: " + weightOnMars.apply(60.0));
+
+
     }
 }
