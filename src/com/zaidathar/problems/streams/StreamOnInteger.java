@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class StreamOnInteger {
     public static void main(String[] args) {
@@ -79,6 +80,22 @@ public class StreamOnInteger {
         List<Integer> factorialList = toBeFactorial.stream().map( factorial).collect(Collectors.toList());
         System.out.println("Factorial List "+factorialList);
 
+        // Generate Fibonacci sequence
+
+        /*
+            - using iterate(seed , f(seed)), f(seed) perform operation on previous value
+            - each time new array will be created {0,1} , {1,1},{1,2},{2,3},{3,5}
+            - first index value will be fibonacci sequence
+            - should put limit because iterate gives infinite sequential order stream
+         */
+        int N = 10;
+        List<Integer> fibonacciSequence = Stream.iterate(new int[]{0, 1}, t -> new int[]{t[1], t[0] + t[1]})
+                .limit(N)
+                .map(t -> t[0])
+                .collect(Collectors.toList());
+        System.out.println("Fibonacci list "+fibonacciSequence);
+
+
 
         // Currying Technique
 
@@ -89,6 +106,7 @@ public class StreamOnInteger {
 
         Function<Double, Double> weightOnMars = weight.apply(3.75);
         System.out.println( "My weight on Mars: " + weightOnMars.apply(60.0));
+
 
 
     }
