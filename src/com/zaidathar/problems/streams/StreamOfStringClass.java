@@ -67,7 +67,6 @@ public class StreamOfStringClass {
 
         // Find first repeating character
 
-//        String s = "Java is a Awesome language";
         String s = "abcdefghijkld";
         Set<Character> charSet = new HashSet<>();
         String finalStr = s.toLowerCase().replaceAll("\\s","");
@@ -78,16 +77,9 @@ public class StreamOfStringClass {
                 .orElse(null);
         System.out.println("First repeated character is "+firstRepeatedChar);
 
-        Function<Double, Function<Double, Double>> weight = gravity -> mass -> mass * gravity;
-
-        Function<Double, Double> weightOnEarth = weight.apply(9.81);
-        System.out.println( "My weight on Earth: " + weightOnEarth.apply(60.0));
-
-        Function<Double, Double> weightOnMars = weight.apply(3.75);
-        System.out.println( "My weight on Mars: " + weightOnMars.apply(60.0));
 
 
-        // Count the occurrence of characters maintaining order
+        // Count the occurrence / frequency of characters maintaining order
 
         String charCountString = "acanbabcnacnionjoolky";
         Map<Character, Long> charCountMap = charCountString.chars()
@@ -101,5 +93,32 @@ public class StreamOfStringClass {
                         )
                 );
         charCountMap.entrySet().forEach(e -> System.out.println(e.getKey()+" "+e.getValue()));
+
+        // Find the most frequent character in string
+        String strForMostFrequent = "abcbabsbdsjbabwjbawaefbananavbabbabbabaab";
+
+        Character mostFrequentChar = strForMostFrequent.chars()
+                .mapToObj(c -> (char)c)
+                .collect(Collectors.groupingBy(
+                        Function.identity(),
+                        Collectors.counting()
+                ))
+                .entrySet()
+                .stream()
+                .max(Map.Entry.comparingByValue())
+                .get()
+                .getKey();
+
+        System.out.println("Most frequent character in string is : "+mostFrequentChar);
+
+        // Longest string in list
+
+        List<String> programmingLang = Arrays.asList("JAVA","PYTHON","ASSEMBLY","JAVASCRIPT","TYPESCRIPT");
+
+        String longestName = programmingLang.stream()
+                .sorted( ( s1, s2 ) -> s2.length() - s1.length())
+                .findFirst()
+                .orElse(null);
+        System.out.println("Longest programming language name : "+longestName);
     }
 }
