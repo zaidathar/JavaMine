@@ -2,6 +2,7 @@ package com.zaidathar.problems.streams;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -129,7 +130,30 @@ public class StreamOnInteger {
         Function<Double, Double> weightOnMars = weight.apply(3.75);
         System.out.println( "My weight on Mars: " + weightOnMars.apply(60.0));
 
+        primeNumberGrouping();
 
+    }
+
+    private static void primeNumberGrouping(){
+        Predicate<Integer> isPrime = number ->{
+            return ( number > 1 &&
+                    IntStream.rangeClosed(2,(int) Math.sqrt(number))
+                            .noneMatch(a -> number % a ==0)
+                    );
+        };
+
+
+        List<Integer> numbers = Arrays.asList(2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        Map<Boolean, List<Integer>> primeNumGrouping = numbers
+                .stream()
+                .collect(Collectors.partitioningBy(
+                        isPrime,
+                        Collectors.toList()
+                ));
+
+        System.out.println("Prime numbers : "+primeNumGrouping.get(true));
+        System.out.println("Non Prime numbers : "+primeNumGrouping.get(false));
 
     }
 }
