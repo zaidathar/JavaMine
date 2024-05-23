@@ -7,6 +7,7 @@ public class Employee implements Comparable<Employee>{
     private Double salary;
     private String contact;
     private String email;
+    private Integer age;
 
     public Employee(){
 
@@ -27,6 +28,15 @@ public class Employee implements Comparable<Employee>{
         this.salary = salary;
         this.contact = contact;
         this.email = email;
+    }
+    public Employee(Integer id, String name, String department, Double salary, String contact, String email,Integer age) {
+        this.id = id;
+        this.name = name;
+        this.department = department;
+        this.salary = salary;
+        this.contact = contact;
+        this.email = email;
+        this.age = age;
     }
 
 
@@ -77,6 +87,26 @@ public class Employee implements Comparable<Employee>{
         this.email = email;
     }
 
+    public Integer getAge(){
+        return this.age;
+    }
+
+    public void setAge(Integer age){
+        this.age = age;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if(!(obj instanceof Employee))
+            return false;
+        return ((Employee)obj).id == this.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.id+this.name.length()+(22*id);
+    }
+
     @Override
     public int compareTo(Employee o) {
         return this.id - o.id;
@@ -92,6 +122,7 @@ public class Employee implements Comparable<Employee>{
                 ", salary=" + salary +
                 ", contact='" + contact + '\'' +
                 ", email='" + email + '\'' +
+                ", age='"+age+'\''+
                 '}';
     }
 }
