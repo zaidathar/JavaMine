@@ -19,11 +19,7 @@ public class Basics {
     }
 
     public static <E> E findFirstUsingOptional(Collection<E> collection) throws Exception {
-         Optional<E> firstValue = collection.stream().findFirst();
-         if(firstValue.isPresent())
-             return firstValue.get();
-         else
-             throw new Exception("Null value found ");
+        return collection.stream().findFirst().orElse(null);
     }
 
 
