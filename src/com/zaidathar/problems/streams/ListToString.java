@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class ListToString {
     public static String getEmployeesNames(List<Employee> ls){
-        return ls.stream().map( a -> a.getName()).collect(Collectors.joining(", "));
+        return ls.stream().map(Employee::getName).collect(Collectors.joining(", "));
     }
     public static void main(String[] args) {
         List<Employee> ls = Arrays.asList(
@@ -21,6 +21,6 @@ public class ListToString {
                 new Employee("Hashim", "Java Web", 124000.0, "+12344", "random@random.java")
         );
 
-        System.out.println("Names "+getEmployeesNames(ls));
+        System.out.println("Employee names : "+getEmployeesNames(ls));
     }
 }
